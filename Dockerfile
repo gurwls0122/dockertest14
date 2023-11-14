@@ -23,11 +23,5 @@ RUN apt-get update && \
 # Run Gradle build
 RUN ./gradlew build -x test
 
-# Specify the location of the JAR file
-ARG JAR_FILE=build/libs/*.jar
-
-# Copy the JAR file to the container
-COPY ${JAR_FILE} app.jar
-
 # Define the entry point for the application
-ENTRYPOINT ["java", "-jar", "/app.jar"]
+ENTRYPOINT ["java", "-jar", "*.jar"]
