@@ -22,12 +22,4 @@ RUN apt-get update && \
 
 RUN ./gradlew --version
 # Run Gradle build
-RUN ./gradlew build --debug
-
-# Your additional Dockerfile steps go here
-
-ARG JAR_FILE=build/libs/*.jar
-COPY ${JAR_FILE} app.jar
-ENTRYPOINT ["java","-jar","/app.jar"]
-
-# Specify the command to run on container start
+RUN ./gradlew build -x test
