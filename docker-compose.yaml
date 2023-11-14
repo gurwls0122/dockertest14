@@ -1,0 +1,22 @@
+version: '3'
+services:
+  spring-app:
+    image: gurwls0122/testspring
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/kluster
+    depends_on:
+      - mysql
+  mysql:
+    image: mysql:latest
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=1234
+      - MYSQL_DATABASE=kluster
+volumes:
+  mysqlinit:
