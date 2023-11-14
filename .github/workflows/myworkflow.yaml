@@ -1,0 +1,25 @@
+name: Kompose Convert on Main Branch
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  kompose-convert:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Docker build & push to docker repo
+      run: |
+          docker login docku.ddns.net -u kluster -p Klusterjoa18!
+          docker build -t dockertest14:latest -f Dockerfile .
+          docker tag dockertest14:latest docku.ddns.net/library/gurwls0122_dockertest14:latest
+          docker push docku.ddns.net/library/gurwls0122_dockertest14:latest
+    # Add additional steps here to deploy the generated Kubernetes resources.
+    - name: CI Completed
+      run:  |
+        curl -H "Content-Type: application/json" -d '{ "repositoryName": "dockertest14", "githubUsername": "gurwls0122"}' -X POST https://kuploy.ddns.net/server/github/action-completed
