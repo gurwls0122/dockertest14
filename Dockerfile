@@ -20,6 +20,7 @@ RUN apt-get update && \
         unzip \
         && rm -rf /var/lib/apt/lists/*
 
+RUN ./gradlew --version
 # Run Gradle build
 RUN ./gradlew build --debug
 
