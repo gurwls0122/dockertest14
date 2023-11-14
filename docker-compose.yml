@@ -1,7 +1,7 @@
 version: '3'
 services:
   spring-app:
-    image: gurwls0122/dockerttest
+    image: gurwls0122/dockertest10
     build:
       context: .
       dockerfile: Dockerfile
